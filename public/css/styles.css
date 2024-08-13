@@ -51,11 +51,6 @@
 
 -----------------------------------------------------------------------------------*/
 
-/* Fonts */
-
-
-/* Fonts */
-
 html {
     direction: rtl;
 }
@@ -71,6 +66,14 @@ body {
     justify-content: space-between;
 }
 
+.group-add {
+    display: flex;
+    flex-direction: row-reverse;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
 .t-right {
     text-align: right;
 }
@@ -80,7 +83,7 @@ body {
     overflow-x: auto;
 }
 
-/* colors */
+/* start colors */
 .bg-grey {
     background-color:   #f9f9f9;
 }
@@ -98,9 +101,9 @@ a {
 .c-grey {
     color: #8a8a8a;
 }
-/* colors */
+/* end colors */
 
-/* btn */
+/* start btn */
 .btn {
     background: linear-gradient(to right, #8914fe 0%, #8063f5 100%);
     border: none;
@@ -120,7 +123,7 @@ a {
     border-radius: 10px;
     
 }
-/* btn */
+/* end btn */
 
 /*------------------------- 1. Core Css -------------------*/
 
@@ -271,11 +274,11 @@ a {
     font-size: 20px;
     width: 10px;
 }
+
 .metismenu li a:hover .icon ,
 .metismenu li.active>a .icon {
     fill: #ffffff;
 }
-
 
 .metismenu li a:only-child:after {
     content: '';
@@ -3102,7 +3105,7 @@ h1{
 
 /* page title */
 
-/* Search */
+/* start Search */
 
 .search {
     display: flex;
@@ -3156,15 +3159,8 @@ h1{
     fill: #ddcfff;
 }
 
-/* Search */
+/* end Search */
 
-.group-add {
-    display: flex;
-    flex-direction: row-reverse;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-}
 input[type="file"] {
     width: 100%;
     height: 100%;
@@ -3186,6 +3182,8 @@ input[type="file"]::-webkit-file-upload-button {
     cursor: pointer;
 }
 
+/* start swal  */
+
 div:where(.swal2-container) .swal2-html-container ,
 .swal2-html-container{
     display: flex;
@@ -3197,6 +3195,7 @@ div:where(.swal2-container) .swal2-html-container ,
     width: 80%;
     height: 100%;
 }
+/* end swal  */
 
 .swal2-title ,
 td {
@@ -3210,7 +3209,7 @@ tbody tr:hover {
     background-color:   #f9f9f9;
 }
 
-
+/* card counter of index page  */
 .counter {
     padding: 10px;
     border-radius: 20px;
