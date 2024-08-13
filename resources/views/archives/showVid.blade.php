@@ -82,7 +82,7 @@
                                             @endif
                                         @endforeach
                                     @else
-                                        <p>لا توجد صور لعرضها.</p>
+                                        <p>لا توجد فيديوهات لعرضها.</p>
                                     @endif
                                 </div>
 
@@ -109,7 +109,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h3 class="c-grey pb-3">اضافة الصور</h3>
+                                <h3 class="c-grey pb-3">اضافة فيديو</h3>
                                 <form action="{{ route('Videos.storeShow', ['id' => $Video->id]) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
