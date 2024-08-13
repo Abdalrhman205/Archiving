@@ -254,6 +254,7 @@ a {
     letter-spacing: 0;
     font-weight: bolder;
     margin-top: 10px;
+    border-radius: 20px 0 0 20px;
 }
 
 .metismenu li a i {
@@ -305,7 +306,6 @@ a {
 .metismenu >li.active>a {
     color: #fff;
     background: linear-gradient(to right, #8914fe 0%, #8063f5 100%);
-    border-radius: 20px 0 0 20px;
 }
 
 
