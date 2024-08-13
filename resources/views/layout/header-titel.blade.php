@@ -82,7 +82,10 @@
                         <a style="cursor: pointer" :href="route('logout')"
                             onclick="event.preventDefault();
                                             this.closest('form').submit();"
-                            class="dropdown-item"><i class="bx bx-log-out"></i> log out </a>
+                            class="dropdown-item">
+                            <i class="fa-solid fa-right-from-bracket fa-fade text-danger ms-3"></i>
+                            log out 
+                        </a>
                     </form>
                 </div>
             </div>
