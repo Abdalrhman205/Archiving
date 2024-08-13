@@ -613,7 +613,7 @@ a {
     transition: color 0.3s ease 0s;
 }
 
-.notification-area li:hover>svg,
+.notification-area li:hover>i,
 .dropdown.show>i {
     color: var(--primary-color);
 }
@@ -3215,5 +3215,3 @@ tbody tr:hover {
     border-radius: 20px;
     color: white;
 }
-
-
