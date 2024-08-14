@@ -10,7 +10,7 @@
     <!-- login area start -->
     <div class="login-area login-s2 ">
         <div class="container">
-            <div class="login-box ptb--100 h-100vh d-flex justify-content-center align-items-center">
+            <div class="login-box  ptb--100 h-100vh d-flex justify-content-center align-items-center">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="login-form-head text-center">
@@ -39,15 +39,17 @@
                         <div class="row mb-4 rmber-area">
                             <div class="col-6">
                                 <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input id="remember_me" type="checkbox" class="custom-control-input" id="customControlAutosizing">
-                                    <label class="custom-control-label" for="customControlAutosizing">{{ __('Remember me') }} </label>
+                                    <input id="remember_me" type="checkbox" class="custom-control-input"
+                                        id="customControlAutosizing">
+                                    <label class="custom-control-label"
+                                        for="customControlAutosizing">{{ __('Remember me') }} </label>
                                 </div>
                             </div>
                             <div class="col-6 text-start">
                                 @if (Route::has('password.request'))
-                                    <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                                    <a class="underline text-white"
                                         href="{{ route('password.request') }}">
-                                        {{ __('Forgot your password?') }}
+                                        {{ __('?Forgot your password') }}
                                     </a>
                                 @endif
                             </div>
