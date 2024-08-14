@@ -2498,19 +2498,19 @@ table.dataTable thead td {
 }
 
 .form-gp input::-webkit-input-placeholder {
-    color: #7e6e6e;
+    color: #ffffff;
 }
 
 .form-gp input::-moz-placeholder {
-    color: #7e6e6e;
+    color: #ffffff;
 }
 
 .form-gp input:-ms-input-placeholder {
-    color: #7e6e6e;
+    color: #ffffff;
 }
 
 .form-gp input:-moz-placeholder {
-    color: #7e6e6e;
+    color: #ffffff;
 }
 
 .form-gp i {
@@ -2618,10 +2618,10 @@ table.dataTable thead td {
     content: '';
     position: absolute;
     height: 206%;
-    width: 97%;
+    width: 100%;
     background: linear-gradient(to right, #8914fe 0%, #8063f5 100%);
     border-radius: 50%;
-    right: -42%;
+    right: -38%;
     z-index: -1;
     top: -47%;
     box-shadow: inset 0 0 51px rgba(0, 0, 0, 0.1);
