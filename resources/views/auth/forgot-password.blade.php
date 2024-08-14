@@ -29,7 +29,7 @@
                             </div>
                         </div>
                         <div class="submit-btn-area">
-                            <button id="form_submit" type="submit">{{ __('Email Password Reset Link') }}<i class="ti-arrow-right"></i></button>
+                            <button id="form_submit" type="submit">{{ __('Email Password Reset Link') }}</button>
                         </div>
                     </div>
                 </form>
