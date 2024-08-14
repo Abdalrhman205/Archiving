@@ -3,6 +3,11 @@
 @include('layout.head')
 
 <body>
+    <!-- preloader area start -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- preloader area end -->
     <!-- page container area start -->
     <div class="page-container">
         <!-- main content area start -->
