@@ -2495,6 +2495,7 @@ table.dataTable thead td {
     text-align: left;
     padding: 18px;
     border-radius: 20px;
+    color: white;
 }
 
 .form-gp input::-webkit-input-placeholder {
