@@ -16,31 +16,49 @@
                     <div class="login-form-head text-center">
                         <h4 class="ps-5"> انشاء حساب </h4>
                     </div>
-
                     <div class="login-form-body">
                         <div class="form-gp">
-                            <input placeholder="Full name" id="name"  type="text" name="name" :value="old('name')" required autofocus autocomplete="name">
+                            <input placeholder="Full name" id="name" type="text" name="name" :value="old('name')" required autofocus autocomplete="name">
                             <i class="ti-user"></i>
-                            <div class="text-danger"></div>
+                            <div class="text-danger">
+                                <!-- Display individual error message for 'name' -->
+                                @error('name')
+                                    {{ $message }}
+                                @enderror
+                            </div>
                         </div>
                         <div class="form-gp">
                             <input placeholder="Email" name="email" :value="old('email')" required autofocus autocomplete="username" type="email" id="exampleInputEmail1">
                             <i class="ti-email"></i>
-                            <div class="text-danger"></div>
+                            <div class="text-danger">
+                                <!-- Display individual error message for 'email' -->
+                                @error('email')
+                                    {{ $message }}
+                                @enderror
+                            </div>
                         </div>
                         <div class="form-gp">
-                            <input placeholder="Password" name="password" required autocomplete="current-password"  type="password" id="exampleInputPassword1">
+                            <input placeholder="Password" name="password" required autocomplete="current-password" type="password" id="exampleInputPassword1">
                             <i class="ti-lock"></i>
-                            <div class="text-danger"></div>
+                            <div class="text-danger">
+                                <!-- Display individual error message for 'password' -->
+                                @error('password')
+                                    {{ $message }}
+                                @enderror
+                            </div>
                         </div>
                         <div class="form-gp">
                             <input placeholder="Confirm Password" id="password_confirmation" class="block mt-1 w-full"
-                            type="password" name="password_confirmation" required autocomplete="new-password">
+                                   type="password" name="password_confirmation" required autocomplete="new-password">
                             <i class="ti-lock"></i>
-                            <div class="text-danger"></div>
+                            <div class="text-danger">
+                                <!-- Display individual error message for 'password_confirmation' -->
+                                @error('password_confirmation')
+                                    {{ $message }}
+                                @enderror
+                            </div>
                         </div>
                         <div class="row mb-4 rmber-area">
-                            
                             <div class="col-6 text-start">
                                 <a class="underline text-white" href="{{ route('login') }}">
                                     {{ __('?Already registered') }}
