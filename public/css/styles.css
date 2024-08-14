@@ -2534,6 +2534,7 @@ table.dataTable thead td {
     text-align: center;
 }
 
+.logout button,
 .submit-btn-area button {
     width: 100%;
     height: 50px;
@@ -2550,11 +2551,17 @@ table.dataTable thead td {
     transition: all 0.5s ease 0s;
 }
 
+.logout button:hover {
+    background-color: red;
+    color: #ffffff;
+    border:2px solid #ffffff; 
+}
 .submit-btn-area button:hover {
     background: linear-gradient(to right, #8914fe 0%, #8063f5 100%);
     color: #ffffff;
-     border:2px solid #ffffff; 
+    border:2px solid #ffffff; 
 }
+
 
 .submit-btn-area button i {
     margin-right: 15px;
