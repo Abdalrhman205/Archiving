@@ -2,6 +2,9 @@
 <html lang="en">
 @include('layout.head')
 <body>
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
     <!-- page container area start -->
     <div class="page-container">
         <!-- main content area start -->
