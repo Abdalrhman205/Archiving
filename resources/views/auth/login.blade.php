@@ -10,7 +10,7 @@
     <!-- login area start -->
     <div class="login-area login-s2 ">
         <div class="container">
-            <div class="login-box form-gp ptb--100 h-100vh d-flex justify-content-center align-items-center">
+            <div class="login-box ptb--100 h-100vh d-flex justify-content-center align-items-center">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="login-form-head text-center">
