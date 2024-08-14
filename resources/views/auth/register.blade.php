@@ -66,7 +66,7 @@
                             </div>
                         </div>
                         <div class="submit-btn-area">
-                            <button id="form_submit" type="submit">{{ __('Register') }}<i class="ti-arrow-right"></i></button>
+                            <button id="form_submit" type="submit">{{ __('Register') }}</button>
                         </div>
                     </div>
                 </form>
