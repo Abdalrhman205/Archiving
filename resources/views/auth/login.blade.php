@@ -53,7 +53,7 @@
                             </div>
                         </div>
                         <div class="submit-btn-area">
-                            <button id="form_submit" type="submit">{{ __('Log in') }} <i class="ti-arrow-right"></i></button>
+                            <button id="form_submit" type="submit">{{ __('Log in') }} </button>
                         </div>
                         <a href="{{ route('register') }}" class="pe-3 fs-5 text-white">انشاء حساب</a> 
                     </div>
