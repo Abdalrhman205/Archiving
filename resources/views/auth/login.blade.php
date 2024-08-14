@@ -21,27 +21,33 @@
                         <div class="form-gp"> 
                             <input placeholder="Email" name="email" :value="old('email')" required autofocus autocomplete="username" type="email" id="exampleInputEmail1">
                             <i class="ti-email"></i>
-                            <div class="text-danger"></div>
+                            @if ($errors->has('email'))
+                                <div class="text-danger">
+                                    {{ $errors->first('email') }}
+                                </div>
+                            @endif
                         </div>
                         <div class="form-gp">
-                            <input placeholder="Password" name="password" required autocomplete="current-password"  type="password" id="exampleInputPassword1">
+                            <input placeholder="Password" name="password" required autocomplete="current-password" type="password" id="exampleInputPassword1">
                             <i class="ti-lock"></i>
-                            <div class="text-danger"></div>
+                            @if ($errors->has('password'))
+                                <div class="text-danger">
+                                    {{ $errors->first('password') }}
+                                </div>
+                            @endif
                         </div>
                         <div class="row mb-4 rmber-area">
                             <div class="col-6">
                                 <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input id="remember_me" type="checkbox" class="custom-control-input"
-                                        id="customControlAutosizing">
-                                    <label class="custom-control-label"
-                                        for="customControlAutosizing">{{ __('Remember me') }} </label>
+                                    <input id="remember_me" type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                                    <label class="custom-control-label" for="customControlAutosizing">{{ __('Remember me') }} </label>
                                 </div>
                             </div>
                             <div class="col-6 text-start">
                                 @if (Route::has('password.request'))
                                     <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                                         href="{{ route('password.request') }}">
-                                        {{ __('?Forgot your password') }}
+                                        {{ __('Forgot your password?') }}
                                     </a>
                                 @endif
                             </div>
