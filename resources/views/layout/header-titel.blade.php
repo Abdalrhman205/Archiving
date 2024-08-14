@@ -69,7 +69,7 @@
         <div class="col-sm-6 clearfix">
             {{--start title --}}
             <div class="title-page ">
-                <h1>{{ $pageTitle }}</h1>
+                <h2>{{ $pageTitle }}</h2>
             </div>
             {{--end titile --}}
         </div>
