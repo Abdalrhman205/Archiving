@@ -117,26 +117,25 @@ body {
     overflow-x: auto;
 }
 /* تغيير شكل شريط التمرير العام */
-::-webkit-scrollbar {
+body::-webkit-scrollbar {
     width: 12px; /* عرض شريط التمرير */
 }
 
 /* تغيير شكل خلفية شريط التمرير */
-::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track {
     background: var(--white-f3); /* لون خلفية المسار */
 }
 
 /* تغيير شكل مقبض شريط التمرير */
-::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
     background: var(--purple); /* لون المقبض */
     border-radius: 6px; /* زاوية دائرية للمقبض */
 }
 
 /* تغيير شكل المقبض عند التمرير عليه */
-::-webkit-scrollbar-thumb:hover {
+body::-webkit-scrollbar-thumb:hover {
     background: var(--bg-purple); /* لون المقبض عند التمرير */
 }
-
 
 
 /* start btn */
