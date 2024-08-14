@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="submit-btn-area mt-4 flex justify-end">
-                            <button id="form_submit" type="submit">{{ __('Confirm') }}<i class="ti-arrow-right"></i></button>
+                            <button id="form_submit" type="submit">{{ __('Confirm') }}</button>
                         </div>
                     </div>
                 </form>
