@@ -51,38 +51,6 @@
 
 -----------------------------------------------------------------------------------*/
 
-html {
-    direction: rtl;
-}
-
-body {
-    font-family: "Cairo", sans-serif;
-
-}
-
-.d-f-ai-c-j-sb {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.group-add {
-    display: flex;
-    flex-direction: row-reverse;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-}
-
-.t-right {
-    text-align: right;
-}
-
-/* scroll */
-.overflow-x-scroll {
-    overflow-x: auto;
-}
-
 /* start colors */
 :root {
     --bg-purple:linear-gradient(to right, #8914fe 0%, #8063f5 100%);
@@ -114,7 +82,62 @@ a {
 .c-grey {
     color: #8a8a8a;
 }
+
 /* end colors */
+
+html {
+    direction: rtl;
+}
+
+body {
+    font-family: "Cairo", sans-serif;
+
+}
+
+.d-f-ai-c-j-sb {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.group-add {
+    display: flex;
+    flex-direction: row-reverse;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.t-right {
+    text-align: right;
+}
+
+/* scroll */
+.overflow-x-scroll {
+    overflow-x: auto;
+}
+/* تغيير شكل شريط التمرير العام */
+::-webkit-scrollbar {
+    width: 12px; /* عرض شريط التمرير */
+}
+
+/* تغيير شكل خلفية شريط التمرير */
+::-webkit-scrollbar-track {
+    background: var(--white-f3); /* لون خلفية المسار */
+}
+
+/* تغيير شكل مقبض شريط التمرير */
+::-webkit-scrollbar-thumb {
+    background: var(--purple); /* لون المقبض */
+    border-radius: 6px; /* زاوية دائرية للمقبض */
+}
+
+/* تغيير شكل المقبض عند التمرير عليه */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--bg-purple); /* لون المقبض عند التمرير */
+}
+
+
 
 /* start btn */
 .btn {
@@ -3116,7 +3139,7 @@ h1{
     top: 0;
 
 }
-.title-page h1{
+.title-page h2{
     color: var(--white);
     background: var(--bg-purple);
     padding: 10px;
