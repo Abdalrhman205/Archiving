@@ -2,11 +2,9 @@
 <html lang="en">
 @include('layout.head')
 <body>
-<!-- preloader area start -->
     <div id="preloader">
         <div class="loader"></div>
     </div>
-    <!-- preloader area end -->
     <!-- page container area start -->
 <div class="page-container">
     <!-- main content area start -->
@@ -225,7 +223,7 @@
                                         
                                         <thead class="text-uppercase bg-light">
                                             <tr>
-                                                <th scope="col">الملف</th>
+                                                <th scope="col">مستند</th>
                                                 <th scope="col">الاسم</th>
                                                 <th scope="col">كلمات المفتاحية</th>
                                                 <th scope="col">الوصف</th>
@@ -238,7 +236,7 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($SideonDocs as $SideonDoc)
-                                                <tr onclick="tableFile({{ $SideonDoc->id }})">
+                                                <tr onclick="tableDoc({{ $SideonDoc->id }})">
                                                     <td>
                                                         @if ($SideonDoc->selectfileDoc)
                                                             @php
@@ -320,7 +318,7 @@
                                         
                                         <thead class="text-uppercase bg-light">
                                             <tr>
-                                                <th scope="col">الملف</th>
+                                                <th scope="col">مستند</th>
                                                 <th scope="col">الاسم</th>
                                                 <th scope="col">كلمات المفتاحية</th>
                                                 <th scope="col">الوصف</th>
@@ -333,7 +331,7 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($SideoutDocs as $SideoutDoc)
-                                                <tr onclick="tableFile({{ $SideoutDoc->id }})">
+                                                <tr onclick="tableDoc({{ $SideoutDoc->id }})">
                                                     <td>
                                                         @if ($SideoutDoc->selectfileDoc)
                                                             @php
