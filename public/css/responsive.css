@@ -614,6 +614,9 @@
     color: #8d97ad;
     background: none;
 }
+    .metismenu >li>a {
+    justify-content: center;
+}
 .metismenu li a .icon {
     display: none;
 }
