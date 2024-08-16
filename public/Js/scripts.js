@@ -243,74 +243,90 @@
 
 // Docment
 
-
 // Edite
 function showEditAlertDoc(documentId) {
     event.stopPropagation();
+
     // جلب البيانات باستخدام Ajax
     axios
         .get("/get-document/" + documentId)
-        .then((response) => {
-            const document = response.data;
+        .then((documentResponse) => {
+            const document = documentResponse.data;
 
-            Swal.fire({
-                title: "تعديل المستند",
-                html: `
-                <div class="swal2-html-container pr-3 pl-3" id="swal2-html-container" style="overflow: hidden;">
-                <input type="text" id="nameDoc" class="swal2-input form-control mb-3" value="${document.nameDoc}" placeholder="اسم المستند">
-                <select id="conditionDoc" class="swal2-input form-control mb-3">
-                    <option value="financial-reports" ${document.conditionDoc == "financial-reports" ? "selected" : ""}>تقارير مالية</option>
-                    <option value="correspondence" ${document.conditionDoc == "correspondence" ? "selected" : ""}>مراسلات</option>
-                    <option value="contracts" ${document.conditionDoc == "contracts" ? "selected" : ""}>عقود</option>
-                </select>
-                <select id="sideDoc" class="swal2-input form-control mb-3">
-                    <option value="داخلية" ${document.sideDoc == "داخلية" ? "selected" : ""}>داخلية</option>
-                    <option value="خارجية" ${document.sideDoc == "خارجية" ? "selected" : ""}>خارجية</option>
-                </select>
-                <input type="text" id="textKey" class="swal2-input form-control mb-3 m-0" value="${document.textKey}" placeholder="الكلمات المفتاحية">
-                <input type="file" id="selectfileDoc" class="swal2-input form-control mb-3 m-0" placeholder=" ">
-                <textarea id="dicraption" class="swal2-input form-control mb-3" placeholder="الوصف">${document.dicraption}</textarea>
-                </div>
-            `,
-                showCancelButton: true,
-                confirmButtonText: "حفظ",
-                cancelButtonText: "إلغاء",
-                preConfirm: () => {
-                    const fileInput = Swal.getPopup().querySelector("#selectfileDoc");
-                    const formData = new FormData();
-                    formData.append('id', document.id);
-                    formData.append('nameDoc', Swal.getPopup().querySelector("#nameDoc").value);
-                    formData.append('conditionDoc', Swal.getPopup().querySelector("#conditionDoc").value);
-                    formData.append('sideDoc', Swal.getPopup().querySelector("#sideDoc").value);
-                    formData.append('textKey', Swal.getPopup().querySelector("#textKey").value);
-                    formData.append('dicraption', Swal.getPopup().querySelector("#dicraption").value);
-                    if (fileInput.files[0]) {
-                        formData.append('selectfileDoc', fileInput.files[0]);
-                    }
-                    return formData;
-                },
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // إرسال البيانات إلى الخادم
-                    axios
-                        .post("/update-document", result.value, {
-                            headers: {
-                                'Content-Type': 'multipart/form-data'
+            // جلب الأقسام باستخدام Ajax
+            axios
+                .get("/get-sections") // تعديل المسار هنا
+                .then((sectionsResponse) => {
+                    const sections = sectionsResponse.data;
+
+                    // تحويل الأقسام إلى خيارات HTML
+                    let sectionsOptions = '<option selected value="لم يتم التحديد"> .. يتبع الي </option>';
+                    sections.forEach(section => {
+                        sectionsOptions += `<option value="${section.nameSection}" ${document.conditionDoc == section.nameSection ? "selected" : ""}>${section.nameSection}</option>`;
+                    });
+
+                    // عرض SweetAlert
+                    Swal.fire({
+                        title: "تعديل المستند",
+                        html: `
+                            <div class="swal2-html-container pr-3 pl-3" id="swal2-html-container" style="overflow: hidden;">
+                                <input type="text" id="nameDoc" class="swal2-input form-control mb-3" value="${document.nameDoc}" placeholder="اسم المستند">
+                                <select id="conditionDoc" class="swal2-input form-control mb-3">
+                                    ${sectionsOptions}
+                                </select>
+                                <select id="sideDoc" class="swal2-input form-control mb-3">
+                                    <option value="داخلية" ${document.sideDoc == "داخلية" ? "selected" : ""}>داخلية</option>
+                                    <option value="خارجية" ${document.sideDoc == "خارجية" ? "selected" : ""}>خارجية</option>
+                                </select>
+                                <input type="text" id="textKey" class="swal2-input form-control mb-3 m-0" value="${document.textKey}" placeholder="الكلمات المفتاحية">
+                                <input type="file" id="selectfileDoc" class="swal2-input form-control mb-3 m-0" placeholder=" ">
+                                <textarea id="dicraption" class="swal2-input form-control mb-3" placeholder="الوصف">${document.dicraption}</textarea>
+                            </div>
+                        `,
+                        showCancelButton: true,
+                        confirmButtonText: "حفظ",
+                        cancelButtonText: "إلغاء",
+                        preConfirm: () => {
+                            const fileInput = Swal.getPopup().querySelector("#selectfileDoc");
+                            const formData = new FormData();
+                            formData.append('id', document.id);
+                            formData.append('nameDoc', Swal.getPopup().querySelector("#nameDoc").value);
+                            formData.append('conditionDoc', Swal.getPopup().querySelector("#conditionDoc").value);
+                            formData.append('sideDoc', Swal.getPopup().querySelector("#sideDoc").value);
+                            formData.append('textKey', Swal.getPopup().querySelector("#textKey").value);
+                            formData.append('dicraption', Swal.getPopup().querySelector("#dicraption").value);
+                            if (fileInput.files[0]) {
+                                formData.append('selectfileDoc', fileInput.files[0]);
                             }
-                        })
-                        .then((response) => {
-                            if (response.data.success) {
-                                Swal.fire("تم التعديل!", "", "success");
-                                window.location.reload();
-                            } else {
-                                Swal.fire("حدث خطأ!", "", "error");
-                            }
-                        })
-                        .catch((error) => {
-                            Swal.fire("حدث خطأ!", "", "error");
-                        });
-                }
-            });
+                            return formData;
+                        },
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // إرسال البيانات إلى الخادم
+                            axios
+                                .post("/update-document", result.value, {
+                                    headers: {
+                                        'Content-Type': 'multipart/form-data'
+                                    }
+                                })
+                                .then((response) => {
+                                    if (response.data.success) {
+                                        Swal.fire("تم التعديل!", "", "success");
+                                        window.location.reload();
+                                    } else {
+                                        Swal.fire("حدث خطأ!", "", "error");
+                                    }
+                                })
+                                .catch((error) => {
+                                    Swal.fire("حدث خطأ!", "", "error");
+                                });
+                        }
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error fetching sections data:", error);
+                    Swal.fire("حدث خطأ في جلب بيانات الأقسام!", "", "error");
+                });
         })
         .catch((error) => {
             console.error("Error fetching document data:", error);
@@ -385,77 +401,94 @@ function confirmDeleteDoc(documentId) {
 }
 
 // File
-
-// Edite
+//  Edite
 function showEditAlertFile(documentId) {
     event.stopPropagation();
-    // جلب البيانات باستخدام Ajax
+
+    // جلب البيانات باستخدام Axios
     axios
         .get("/get-File/" + documentId)
-        .then((response) => {
-            const document = response.data;
-            Swal.fire({
-                title: "تعديل الملف",
-                html: `
-                <div class="swal2-html-container pr-3 pl-3" id="swal2-html-container" style="overflow: hidden;">
-                <input type="text" id="nameFile" class="swal2-input form-control mb-3" value="${document.nameFile}" placeholder="اسم الملف">
-                <select id="conditionFile" class="swal2-input form-control mb-3">
-                    <option value="financial-reports" ${document.conditionFile == "financial-reports" ? "selected" : ""}>تقارير مالية</option>
-                    <option value="correspondence" ${document.conditionFile == "correspondence" ? "selected" : ""}>مراسلات</option>
-                    <option value="contracts" ${document.conditionFile == "contracts" ? "selected" : ""}>عقود</option>
-                </select>
-                <select id="sideFile" class="swal2-input form-control mb-3">
-                    <option value="داخلية" ${document.sideFile == "داخلية" ? "selected" : ""}>داخلية</option>
-                    <option value="خارجية" ${document.sideFile == "خارجية" ? "selected" : ""}>خارجية</option>
-                </select>
-                <input type="text" id="textKey" class="swal2-input form-control mb-3 m-0" value="${document.textKey}" placeholder="الكلمات المفتاحية">
-                <input type="file" id="selectfileFile" class="swal2-input form-control mb-3 m-0" placeholder=" ">
-                <textarea id="dicraption" class="swal2-input form-control mb-3" placeholder="الوصف">${document.dicraption}</textarea>
-                </div>
-                `,
-                showCancelButton: true,
-                confirmButtonText: "حفظ",
-                cancelButtonText: "إلغاء",
-                preConfirm: () => {
-                    const fileInput = Swal.getPopup().querySelector("#selectfileFile");
-                    const formData = new FormData();
-                    formData.append('id', document.id);
-                    formData.append('nameFile', Swal.getPopup().querySelector("#nameFile").value);
-                    formData.append('conditionFile', Swal.getPopup().querySelector("#conditionFile").value);
-                    formData.append('sideFile', Swal.getPopup().querySelector("#sideFile").value);
-                    formData.append('textKey', Swal.getPopup().querySelector("#textKey").value);
-                    formData.append('dicraption', Swal.getPopup().querySelector("#dicraption").value);
-                    if (fileInput.files[0]) {
-                        formData.append('selectfileFile', fileInput.files[0]);
-                    }
-                    return formData;
-                },
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // إرسال البيانات إلى الخادم
-                    axios
-                        .post("/update-File", result.value, {
-                            headers: {
-                                'Content-Type': 'multipart/form-data'
+        .then((documentResponse) => {
+            const document = documentResponse.data;
+
+            // جلب الأقسام باستخدام Axios
+            axios
+                .get("/get-sections")
+                .then((sectionsResponse) => {
+                    const sections = sectionsResponse.data;
+
+                    // تحويل الأقسام إلى خيارات HTML
+                    let sectionsOptions = '<option selected value="لم يتم التحديد"> .. يتبع إلى </option>';
+                    sections.forEach(section => {
+                        sectionsOptions += `<option value="${section.nameSection}" ${document.conditionFile == section.nameSection ? "selected" : ""}>${section.nameSection}</option>`;
+                    });
+
+                    // عرض SweetAlert
+                    Swal.fire({
+                        title: "تعديل الملف",
+                        html: `
+                            <div class="swal2-html-container pr-3 pl-3" id="swal2-html-container" style="overflow: hidden;">
+                                <input type="text" id="nameFile" class="swal2-input form-control mb-3" value="${document.nameFile}" placeholder="اسم الملف">
+                                <select id="conditionFile" class="swal2-input form-control mb-3">
+                                    ${sectionsOptions}
+                                </select>
+                                <select id="sideFile" class="swal2-input form-control mb-3">
+                                    <option value="داخلية" ${document.sideFile == "داخلية" ? "selected" : ""}>داخلية</option>
+                                    <option value="خارجية" ${document.sideFile == "خارجية" ? "selected" : ""}>خارجية</option>
+                                </select>
+                                <input type="text" id="textKey" class="swal2-input form-control mb-3 m-0" value="${document.textKey}" placeholder="الكلمات المفتاحية">
+                                <input type="file" id="selectfileFile" class="swal2-input form-control mb-3 m-0" placeholder=" ">
+                                <textarea id="dicraption" class="swal2-input form-control mb-3" placeholder="الوصف">${document.dicraption}</textarea>
+                            </div>
+                        `,
+                        showCancelButton: true,
+                        confirmButtonText: "حفظ",
+                        cancelButtonText: "إلغاء",
+                        preConfirm: () => {
+                            const fileInput = Swal.getPopup().querySelector("#selectfileFile");
+                            const formData = new FormData();
+                            formData.append('id', document.id);
+                            formData.append('nameFile', Swal.getPopup().querySelector("#nameFile").value);
+                            formData.append('conditionFile', Swal.getPopup().querySelector("#conditionFile").value);
+                            formData.append('sideFile', Swal.getPopup().querySelector("#sideFile").value);
+                            formData.append('textKey', Swal.getPopup().querySelector("#textKey").value);
+                            formData.append('dicraption', Swal.getPopup().querySelector("#dicraption").value);
+                            if (fileInput.files[0]) {
+                                formData.append('selectfileFile', fileInput.files[0]);
                             }
-                        })
-                        .then((response) => {
-                            if (response.data.success) {
-                                Swal.fire("تم التعديل!", "", "success");
-                                window.location.reload();
-                            } else {
-                                Swal.fire("حدث خطأ!", "", "error");
-                            }
-                        })
-                        .catch((error) => {
-                            Swal.fire("حدث خطأ!", "", "error");
-                        });
-                }
-            });
+                            return formData;
+                        },
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // إرسال البيانات إلى الخادم
+                            axios
+                                .post("/update-File", result.value, {
+                                    headers: {
+                                        'Content-Type': 'multipart/form-data'
+                                    }
+                                })
+                                .then((response) => {
+                                    if (response.data.success) {
+                                        Swal.fire("تم التعديل!", "", "success");
+                                        window.location.reload();
+                                    } else {
+                                        Swal.fire("حدث خطأ!", "", "error");
+                                    }
+                                })
+                                .catch((error) => {
+                                    Swal.fire("حدث خطأ!", "", "error");
+                                });
+                        }
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error fetching sections data:", error);
+                    Swal.fire("حدث خطأ في جلب بيانات الأقسام!", "", "error");
+                });
         })
         .catch((error) => {
-            console.error("Error fetching File data:", error);
-            Swal.fire("حدث خطأ في جلب بيانات المستند!", "", "error");
+            console.error("Error fetching file data:", error);
+            Swal.fire("حدث خطأ في جلب بيانات الملف!", "", "error");
         });
 }
 // Showtable 
